@@ -63,22 +63,60 @@
 					?>
                 	<div style="width:89%; height:480px;" class="dbor">
                     	<span class="t botli">校園映象區</span>
+						<!--以下插入圖片及控制按鈕-->
+						<!--建立一個div用來放置向上按鈕圖-->
+						<div class="cent">
+							<img src="./icon/up.jpg" onclick="pp(1)">
+						</div>
+						<!--將顯示的圖片列表在中間-->
+						<?php
+							$rows=all("image",["sh"=>1]);
+							foreach($rows as $k => $r){
+								echo "<div class='im' id='ssaa$k'>";
+								echo "<img src='./img/".$r['file']."'>";
+								echo "</div>";
+							}
+
+						?>
+
+						<!--建立一個div用來放置向下按鈕圖-->
+						<div class="cent">
+							<img src="./icon/dn.jpg" onclick="pp(2)">
+						</div>
 						<script>
-                        	var nowpage=0,num=0;
+							//在num變數中讀出目前可供前台顯示的圖片張數
+                        	var nowpage=0,num=<?=nums("image",["sh"=>1]);?>;
 							function pp(x)
 							{
 								var s,t;
+								//判斷按下向上按鈕時要進行的動作
 								if(x==1&&nowpage-1>=0)
-								{nowpage--;}
-								if(x==2&&(nowpage+1)*3<=num*1+3)
-								{nowpage++;}
+								{
+									//將nowpage變數減1
+									nowpage--;
+								}
+
+								//判斷按下向下按鈕時要進行的動作
+								if(x==2&&(nowpage+1)<=num-3)
+								{
+									//將nowpage變數加1
+									nowpage++;
+								}
+
+								//先將所有class為im的dom都隱藏
 								$(".im").hide()
+
+								//利用迴圈來決定要顯示那三張圖片
 								for(s=0;s<=2;s++)
 								{
+									//計算要顯示的圖片的id值
 									t=s*1+nowpage*1;
+
+									//將指定id的dom顯示出來
 									$("#ssaa"+t).show()
 								}
 							}
+							//在頁面載入完成時先執行一次向上按鈕，藉此先讓前三張圖片顯示，其它圖片隱藏
 							pp(1)
                         </script>
                     </div>
