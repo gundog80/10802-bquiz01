@@ -7,6 +7,23 @@ $pdo=new PDO($dsn,"root","");
 //啟用session
 session_start();
 
+//利用session是否存在來判斷使用者是否已連線網站
+if(empty($_SESSION['total'])){
+
+  //取出目前資料表中最新的進站人數資料
+  $total=find("total",1);
+
+  //設定使用者看到的進站人數為資料表中的人數加1
+  $_SESSION['total']=$total['total']+1;
+
+  //設定資料表陣列中的total欄位加1
+  $total['total']=$total['total']+1;
+
+  //利用save()函式將更新後的進站人數寫回資料表
+  save("total",$total);
+}
+
+
 //取得單筆資料
 function find($table,...$arg){
   global $pdo;

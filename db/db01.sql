@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `db_01`
+-- 資料庫： `db01`
 --
 
 -- --------------------------------------------------------
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `ad` (
   `id` int(5) UNSIGNED NOT NULL,
-  `file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sh` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -46,13 +46,6 @@ CREATE TABLE `admin` (
   `acc` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `pw` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `admin`
---
-
-INSERT INTO `admin` (`id`, `acc`, `pw`) VALUES
-(1, 'admin', '1234');
 
 -- --------------------------------------------------------
 
@@ -80,8 +73,8 @@ INSERT INTO `bottom` (`id`, `bottom`) VALUES
 
 CREATE TABLE `image` (
   `id` int(5) UNSIGNED NOT NULL,
-  `file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sh` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -93,8 +86,8 @@ CREATE TABLE `image` (
 
 CREATE TABLE `menu` (
   `id` int(5) UNSIGNED NOT NULL,
-  `href` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `href` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `parent` int(5) NOT NULL,
   `sh` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -107,8 +100,8 @@ CREATE TABLE `menu` (
 
 CREATE TABLE `mvim` (
   `id` int(5) UNSIGNED NOT NULL,
-  `file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sh` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -120,8 +113,8 @@ CREATE TABLE `mvim` (
 
 CREATE TABLE `news` (
   `id` int(5) UNSIGNED NOT NULL,
-  `file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sh` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -133,8 +126,8 @@ CREATE TABLE `news` (
 
 CREATE TABLE `title` (
   `id` int(5) UNSIGNED NOT NULL,
-  `file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sh` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -228,7 +221,7 @@ ALTER TABLE `ad`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `bottom`
