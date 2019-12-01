@@ -16,8 +16,24 @@
           <td></td>
         </tr>
         <?php
-        //取出資料表的所有資料
-        $rows=all($useTable);
+        
+        // 先取得資料表中的總筆數(要注意是否有條件限制，比如顯示不顯示)
+        $sum=nums($useTable);
+
+        // 決定每個頁面的筆數
+        $div=3;
+
+        // 計算總頁數(無條件進位法)
+        $pages=ceil($sum/$div);
+
+        // 採用網址參數的方式來取得當前頁，預設為第一頁
+        $p=(!empty($_GET['p']))?$_GET['p']:1;
+
+        // 計算資料的開始筆數((當前頁-1)*每頁筆數)
+        $start=($p-1)*$div;
+
+        // 下SQL查詢語法(LIMIT start,amount) 及 取出分頁資料
+        $rows=all($useTable,[]," LIMIT $start,$div");
 
         //以迴圈的方式逐筆列出資料
         foreach($rows as $r){
@@ -47,6 +63,24 @@
         ?>
       </tbody>
     </table>
+    <!--插入一個DIV用來放置分頁及頁碼-->
+    <div class="cent">
+    <?php
+
+        if(($p-1)>0){
+          echo "<a href='admin.php?do=$useTable&p=".($p-1)."' style='text-decoration:none'> < </a>";
+        }
+
+        for($i=1;$i<=$pages;$i++){
+          $fontSize=($i==$p)?"24px":"16px";
+          echo "<a href='admin.php?do=$useTable&p=$i' style='font-size:$fontSize;text-decoration:none'> ".$i." </a>";
+        }
+
+        if(($p+1)<=$pages){
+          echo "<a href='admin.php?do=$useTable&p=".($p+1)."' style='text-decoration:none'> > </a>";
+        }
+    ?>
+    </div>
     <table style="margin-top:40px; width:70%;">
       <tbody>
         <tr>
