@@ -19,7 +19,7 @@
         </tr>
         <?php
         //取出資料表的所有資料
-        $rows=all($useTable);
+        $rows=all($useTable,['parent'=>0]);
 
         //以迴圈的方式逐筆列出資料
         foreach($rows as $r){
@@ -31,8 +31,7 @@
           <td>
             <input type="text" name="href[]" value="<?=$r['href'];?>">
           </td>
-          <td>
-          </td>
+          <td><?=nums($useTable,["parent"=>$r['id']]);?></td>
           <td>
             <!--checkbox是多選的機制，因此name的屬性需要使用陣列的型式-->
             <input type="checkbox" name="sh[]" value="<?=$r['id'];?>" <?=($r['sh']==1)?"checked":"";?>>
@@ -43,7 +42,7 @@
           <td>
             <!--這裹使用素材提供的op()函式來載入更新圖片需要的表單檔案，
                 同時利用get機制帶入相關的資料id及資料表名稱等資訊-->
-            <input type="button" value="編輯次選單" onclick="op('#cover','#cvr','./view/update_<?=$useTable;?>.php?id=<?=$r['id'];?>&table=<?=$useTable;?>')" >
+            <input type="button" value="編輯次選單" onclick="op('#cover','#cvr','./view/sub_menu.php?id=<?=$r['id'];?>&table=<?=$useTable;?>')" >
 
             <!--這裹帶入一個隱藏欄位用來存放每筆資料的id，以利識別-->
             <input type="hidden" name="id[]" value="<?=$r['id'];?>">
