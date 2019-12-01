@@ -38,3 +38,19 @@ note:
 news.php 及 home.php 下方的<script></script>是用來做為最新消息彈出視窗用的，
 因此在切割檔案時，要記得連<script>的部份一起切出去
 ```
+
+---
+
+## 步驟四：建立資料庫連線檔及常用函式。
+  1. 建立 `base.php` 檔，用來放共用的設定及函式。
+  2. 設定好PDO的連線參數 `$pdo=new PDO()`
+  3. 啟用session `session_start()`
+  4. 建立全域變數或是共用函式
+      * find(\$table,...\$arg) - 尋找特定條件的單筆資料或第一筆資料
+      * all(\$table,...\$arg) - 取得資料表的全部資料或是特定條件的全部資料
+      * nums(\$table,...\$arg) - 計算符合條件的資料筆數
+      * save(\$talbe,\$data) - 新增或更新單筆資料
+      * del(\$table,...\$arg) - 刪除特定條件的全部資料
+      * q(\$sql) - 簡化 \$pdo->query(\$sql)->fetchAll() 的使用;
+      * to(\$path) - 簡化 header("location:xxxxxx") 的使用;
+  5. 做好以上工作後，可以先建一張簡單的資料表，把資料庫連線及所有自訂函式功能先測試一次，以確保後續使用不會有問題。
