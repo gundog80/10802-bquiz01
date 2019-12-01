@@ -10,9 +10,25 @@ if(!empty($_FILES['file']['tmp_name'])){
     move_uploaded_file($_FILES['file']['tmp_name'],"../img/".$data['file']);
 }
 
-//判斷是否有傳遞text欄位的資料，有的話就進行資料的取得
-if(!empty($_POST['text'])){
-    $data['text']=$_POST['text'];
+//依據資料表來做不同的處理
+switch($table){
+  case "admin":
+    if(!empty($_POST['acc']) && !empty($_POST['pw'])){
+        $data["acc"]=$_POST['acc'];
+        $data["pw"]=$_POST['pw'];
+    }
+  break;
+  case "menu":
+    if(!empty($_POST['text']) && !empty($_POST['href'])){
+        $data["text"]=$_POST['text'];
+        $data["href"]=$_POST['href'];
+    }
+  break;
+  default:
+    //判斷是否有傳遞text欄位的資料，有的話就進行資料的取得
+    if(!empty($_POST['text'])){
+        $data['text']=$_POST['text'];
+    }  
 }
 
   //利用save()函式將存在$data陣列中的資料寫入資料表中

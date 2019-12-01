@@ -26,7 +26,8 @@
             <input type="text" name="acc[]" value="<?=$r['acc'];?>">
           </td>
           <td>
-            <input type="password" name="pw[]" value="<?=$r['pw'];?>" >
+            <!--checkbox是多選的機制，因此name的屬性需要使用陣列的型式-->
+            <input type="password" name="pw[]" value="<?=$r['pw'];?>">
           </td>
           <td>
             <input type="checkbox" name="del[]" value="<?=$r['id'];?>">

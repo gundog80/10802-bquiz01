@@ -13,9 +13,28 @@ foreach($_POST['id'] as $key => $id){
         //先取出該筆資料
         $data=find($table,$id);
 
-        //將欄位內容更新成表單傳遞過來的內容
-        $data['text']=$_POST['text'][$key];
-        $data['sh']=($id==$_POST['sh'])?1:0;
+        //依據不同的資料表來做不同的動作
+        switch($table){
+            case "title":
+                //將欄位內容更新成表單傳遞過來的內容
+                $data['text']=$_POST['text'][$key];
+                $data['sh']=($id==$_POST['sh'])?1:0;
+            break;
+            case "admin":
+                $data['acc']=$_POST['acc'][$key];
+                $data['pw']=$_POST['pw'][$key];                
+            break;
+            case "menu":
+                $data['text']=$_POST['text'][$key];
+                $data['href']=$_POST['href'][$key];
+                $data['sh']=(in_array($id,$_POST['sh']))?1:0;                  
+            break;
+            default:
+                //將欄位內容更新成表單傳遞過來的內容
+                $data['text']=$_POST['text'][$key];
+                $data['sh']=(in_array($id,$_POST['sh']))?1:0;
+        }
+
 
         //利用save()函式將該筆資料寫回資料表
         save($table,$data);
