@@ -23,8 +23,56 @@
              	<div id="lf" style="float:left;">
             		<div id="menuput" class="dbor">
                     <!--主選單放此-->
-                    	                            <span class="t botli">主選單區</span>
-                                                </div>
+						<span class="t botli">主選單區</span>
+					<?php
+
+					//取出所有可顯示的主選單
+					$main=all("menu",["parent"=>0,"sh"=>1]);
+
+					//利用迴圈來列出主選單
+					foreach($main as $m){
+					?>
+						<!--參考後台選單的做法，但是略做修改成為可用的內容-->
+						<div class="mainmu">
+
+							<!--在相應的位置放入主選單的文字及連結-->
+							<a style="color:#000; font-size:13px; text-decoration:none;" href="<?=$m['href'];?>">
+            					<?=$m['text'];?>
+							</a>
+							  
+							<!--建立一個子容器用來放置次選單-->
+							<div class="mw">
+							<?php
+								//先檢查該主選單是否有任何次選單
+								$chk=nums("menu",["parent"=>$m['id']]);
+
+								if($chk>0){
+
+									//如果有次選單，則取出所有的次選單
+									$sub=all("menu",["parent"=>$m['id']]);
+
+									//使用迴圈來列出所有次選單
+									foreach($sub as $s){
+									?>
+										<!--使用版型素材有的mainmu2來做為次選單的樣式-->
+										<div class="mainmu2">
+
+											<!--在相應的位置放入次選單的文字及連結-->
+											<a style="color:#000; font-size:13px; text-decoration:none;" href="<?=$s['href'];?>">
+            									<?=$s['text'];?>
+          									</a>										
+										</div>
+									<?php
+									}
+								}
+							?>	
+							</div>
+						  </div>
+					<?php				
+					}
+					
+					?>
+					</div>
                     <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     	<span class="t">進站總人數 :<?=$_SESSION['total'];?></span>
                     </div>
