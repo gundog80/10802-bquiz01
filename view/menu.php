@@ -1,15 +1,16 @@
-<h3 class="cent">新增標題區圖片</h3>
+<h3 class="cent">新增管理者帳號</h3>
 <hr>
 <form action="./api/add.php" method="post" enctype="multipart/form-data" style="width:60%;margin:auto">
 <table>
     <tr>
-        <td>標題區圖片：</td>
-        <td><input type="file" name="file" id="file"></td>
+        <td>主選單名稱：</td>
+        <td><input type="text" name="text"></td>
     </tr>
     <tr>
-        <td>標題區替代文字：</td>
-        <td><input type="text" name="text" id="text"></td>
+        <td>選單連結網址：</td>
+        <td><input type="text" name="href"></td>
     </tr>
+
     <tr class="cent">
         <td colspan="2">
             <input type="hidden" name="table" value="<?=$_GET['table'];?>">

@@ -24,17 +24,17 @@
         foreach($rows as $r){
         ?>
         <tr class="cent">
-          <td width="45%">
+          <td>
             <img src="./img/<?=$r['file'];?>" style="width:300px;height:30px">
           </td>
-          <td width="23%">
+          <td>
             <input type="text" name="text[]" value="<?=$r['text'];?>">
           </td>
-          <td width="7%">
+          <td>
             <!--radio是單選的機制，因此name的屬性不需使用陣列的型式-->
             <input type="radio" name="sh" value="<?=$r['id'];?>" <?=($r['sh']==1)?"checked":"";?>>
           </td>
-          <td width="7%">
+          <td>
             <input type="checkbox" name="del[]" value="<?=$r['id'];?>">
           </td>
           <td>

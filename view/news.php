@@ -1,14 +1,10 @@
-<h3 class="cent">新增標題區圖片</h3>
+<h3 class="cent">新增最新消息資料</h3>
 <hr>
 <form action="./api/add.php" method="post" enctype="multipart/form-data" style="width:60%;margin:auto">
 <table>
     <tr>
-        <td>標題區圖片：</td>
-        <td><input type="file" name="file" id="file"></td>
-    </tr>
-    <tr>
-        <td>標題區替代文字：</td>
-        <td><input type="text" name="text" id="text"></td>
+        <td>最新消息資料：</td>
+        <td><textarea name="text" id="text" style="width:300px;height:100px"></textarea></td>
     </tr>
     <tr class="cent">
         <td colspan="2">
